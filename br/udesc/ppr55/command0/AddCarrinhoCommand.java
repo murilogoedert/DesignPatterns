@@ -1,4 +1,4 @@
-package br.udesc.ppr55.command0;
+package src.br.udesc.ppr55.command0;
 
 public class AddCarrinhoCommand implements Command {
 
