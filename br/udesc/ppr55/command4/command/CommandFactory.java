@@ -1,10 +1,10 @@
-package br.udesc.ppr55.command3.command;
+package br.udesc.ppr55.command4.command;
 
 import java.lang.reflect.Constructor;
 import java.util.HashMap;
 import java.util.Map;
 
-import br.udesc.ppr55.command3.observer.Observer;
+import br.udesc.ppr55.command4.observer.Observer;
 
 public class CommandFactory {
 
@@ -12,15 +12,11 @@ public class CommandFactory {
 	private Observer observer;
 
 	public CommandFactory(Observer observer) {
-
-		comandos.put("new", NewCommand.class);
-		comandos.put("get", GetCommand.class);
-		comandos.put("all", AllCommand.class);
-		comandos.put("delete", DeleteCommand.class);
+		comandos.put("quadrado", QuadradoCommand.class);
 		this.observer = observer;
 	}
 
-	public Command getCommand(String comando, String[] dados) throws Exception {
+	public Command getCommand(String comando) throws Exception {
 	
 		Class<? extends Command> commClass = comandos.get(comando);
 		
@@ -31,7 +27,7 @@ public class CommandFactory {
 			params = new Class<?>[] {Observer.class};
 		}
 
-		Constructor<? extends Command> constr = commClass.getConstructor(params );
+		Constructor<? extends Command> constr = commClass.getConstructor(params);
 		
 		Command comm;
 		if (dados != null) {
